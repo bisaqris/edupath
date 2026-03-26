@@ -5,7 +5,7 @@ import Link from "next/link";
 import { jobs } from "@/lib/data";
 import {
   ArrowLeft, Upload, CheckCircle2,
-  MapPin, Building2, X
+  MapPin, Building2, X, FileText
 } from "lucide-react";
 import { clsx } from "clsx";
 
@@ -43,8 +43,8 @@ export default function ApplyPage({ params }: PageProps) {
     placeholder = "",
     hint?: string
   ) => (
-    <div>
-      <label className="block text-sm font-medium text-slate-700 mb-1.5">
+    <div className="w-full">
+      <label className="block text-xs md:text-sm font-semibold text-slate-700 mb-1.5">
         {label}<span className="text-red-500 ml-0.5">*</span>
       </label>
       <input
@@ -53,37 +53,38 @@ export default function ApplyPage({ params }: PageProps) {
         placeholder={placeholder || label}
         value={form[key]}
         onChange={(e) => setForm({ ...form, [key]: e.target.value })}
-        className="w-full border border-gray-200 rounded-lg px-4 py-2.5 text-sm text-slate-700 placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-navy/20 focus:border-navy/30 transition-all bg-white"
+        className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm text-slate-700 placeholder-gray-300 focus:outline-none focus:ring-4 focus:ring-navy/5 focus:border-navy/30 transition-all bg-white"
       />
-      {hint && <p className="text-[11px] text-primary mt-1">{hint}</p>}
+      {hint && <p className="text-[10px] md:text-[11px] text-primary mt-1.5 leading-relaxed">{hint}</p>}
     </div>
   );
 
   return (
-    <div className="min-h-screen bg-white text-slate-700 font-sans">
-
+    <div className="min-h-screen bg-white text-slate-700 font-sans pb-10">
+      
       {showSuccess && (
-        <div className="fixed inset-0 bg-black/30 backdrop-blur-sm z-50 flex items-center justify-center p-6">
-          <div className="bg-white rounded-2xl shadow-2xl p-10 max-w-sm w-full text-center animate-in zoom-in-95 fade-in duration-300">
-            <div className="flex justify-end mb-2">
-              <button onClick={() => setShowSuccess(false)} className="text-gray-300 hover:text-gray-500 transition-colors">
-                <X className="w-5 h-5" />
-              </button>
+        <div className="fixed inset-0 bg-primary/20 backdrop-blur-md z-[100] flex items-center justify-center p-4">
+          <div className="bg-white rounded-3xl shadow-2xl p-8 md:p-10 max-w-sm w-full text-center animate-in zoom-in-95 fade-in duration-300 relative">
+            <button 
+              onClick={() => setShowSuccess(false)} 
+              className="absolute right-5 top-5 text-gray-300 hover:text-gray-500 transition-colors p-1"
+            >
+              <X className="w-5 h-5" />
+            </button>
+
+            <div className="w-20 h-20 md:w-24 md:h-24 rounded-full bg-primary/5 flex items-center justify-center mx-auto mb-6">
+              <CheckCircle2 className="w-10 h-10 md:w-12 md:h-12 text-primary" strokeWidth={2} />
             </div>
 
-            <div className="w-24 h-24 rounded-full border-4 border-navy flex items-center justify-center mx-auto mb-6">
-              <CheckCircle2 className="w-12 h-12 text-navy" strokeWidth={1.5} />
-            </div>
-
-            <h3 className="text-base font-bold text-navy mb-3">Pendaftaran Berhasil</h3>
-            <p className="text-sm text-slate-500 leading-relaxed">
-              Anda telah berhasil mendaftar pada pekerjaan ini, informasi selanjutnya akan diberikan melalui{" "}
-              <span className="text-primary font-medium">email</span> anda.
+            <h3 className="text-lg font-bold text-primary mb-3">Pendaftaran Berhasil</h3>
+            <p className="text-xs md:text-sm text-slate-500 leading-relaxed">
+              Anda telah berhasil mendaftar pada pekerjaan ini. Informasi selanjutnya akan dikirim melalui{" "}
+              <span className="text-primary font-bold">Email</span> Anda.
             </p>
 
             <Link
               href="/info-loker"
-              className="mt-8 block w-full py-3 bg-navy text-white rounded-xl font-bold text-sm hover:shadow-lg transition-all"
+              className="mt-8 block w-full py-4 bg-primary text-white rounded-2xl font-bold text-sm hover:shadow-xl hover:shadow-navy/20 transition-all active:scale-[0.98]"
             >
               Kembali ke Info Loker
             </Link>
@@ -91,45 +92,45 @@ export default function ApplyPage({ params }: PageProps) {
         </div>
       )}
 
-      <div className="max-w-4xl mx-auto px-6 lg:px-10 py-6">
+      <div className="max-w-4xl mx-auto px-4 md:px-10 py-6">
         <Link
           href={`/info-loker/${job.id}`}
-          className="inline-flex items-center gap-2 text-slate-500 hover:text-navy text-sm font-medium transition-colors"
+          className="inline-flex items-center gap-2 text-slate-400 hover:text-navy text-xs md:text-sm font-semibold transition-colors group"
         >
-          <ArrowLeft className="w-4 h-4" /> Kembali
+          <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" /> Kembali
         </Link>
       </div>
 
-      <main className="max-w-4xl mx-auto px-6 lg:px-10 pb-20">
-
-        <div className="mb-8">
-          <h1 className="text-2xl font-bold text-slate-900 mb-2">Apply {job.title}</h1>
-          <div className="flex items-center gap-4 text-sm text-slate-500">
-            <span className="flex items-center gap-1.5">
+      <main className="max-w-4xl mx-auto px-4 md:px-10">
+        
+        <div className="mb-8 md:mb-10 bg-gray-50/50 p-6 rounded-2xl border border-gray-100">
+          <h1 className="text-xl md:text-3xl font-bold text-slate-900 mb-3">Lamar: {job.title}</h1>
+          <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6 text-xs md:text-sm text-slate-500">
+            <span className="flex items-center gap-2">
               <Building2 className="w-4 h-4 text-slate-400" /> {job.company}
             </span>
-            <span className="flex items-center gap-1.5">
+            <span className="flex items-center gap-2">
               <MapPin className="w-4 h-4 text-slate-400" /> {job.location}
             </span>
           </div>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-6">
-
-          <div className="grid sm:grid-cols-2 gap-6">
-            {field("Nama Lengkap", "fullName", "text", "Nama Lengkap")}
-            {field("Pendidikan", "education", "text", "Pendidikan")}
+        <form onSubmit={handleSubmit} className="space-y-6 md:space-y-8">
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6">
+            {field("Nama Lengkap", "fullName", "text", "Masukkan nama sesuai KTP")}
+            {field("Pendidikan Terakhir", "education", "text", "Contoh: S1 Teknik Informatika")}
           </div>
 
-          <div className="grid sm:grid-cols-2 gap-6">
-            {field("Nomor Telephone", "phone", "tel", "Nomor Telephone")}
-            {field("Email", "email", "email", "Email")}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6">
+            {field("Nomor WhatsApp", "phone", "tel", "0812xxxx")}
+            {field("Alamat Email", "email", "email", "nama@email.com")}
           </div>
 
-          <div className="grid sm:grid-cols-2 gap-6">
-            {field("Domisili", "domicile", "text", "Domisili")}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6">
+            {field("Domisili Saat Ini", "domicile", "text", "Kota, Provinsi")}
             <div>
-              <label className="block text-sm font-medium text-slate-700 mb-1.5">
+              <label className="block text-xs md:text-sm font-semibold text-slate-700 mb-1.5">
                 Tanggal Lahir<span className="text-red-500 ml-0.5">*</span>
               </label>
               <input
@@ -137,47 +138,42 @@ export default function ApplyPage({ params }: PageProps) {
                 required
                 value={form.dob}
                 onChange={(e) => setForm({ ...form, dob: e.target.value })}
-                className="w-full border border-gray-200 rounded-lg px-4 py-2.5 text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-navy/20 focus:border-navy/30 transition-all bg-white"
+                className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm text-slate-700 focus:outline-none focus:ring-4 focus:ring-navy/5 transition-all bg-white"
               />
             </div>
           </div>
 
-          <div className="grid sm:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6">
+            {field("Link Portfolio", "portfolio", "url", "https://", "Dapat berupa link Google Drive, GitHub, atau Behance.")}
+            
             <div>
-              <label className="block text-sm font-medium text-slate-700 mb-1.5">
-                Link Portfolio<span className="text-red-500 ml-0.5">*</span>
+              <label className="block text-xs md:text-sm font-semibold text-slate-700 mb-1.5">
+                Upload CV / Resume<span className="text-red-500 ml-0.5">*</span>
               </label>
-              <input
-                type="url"
-                required
-                placeholder="https://"
-                value={form.portfolio}
-                onChange={(e) => setForm({ ...form, portfolio: e.target.value })}
-                className="w-full border border-gray-200 rounded-lg px-4 py-2.5 text-sm text-slate-700 placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-navy/20 focus:border-navy/30 transition-all bg-white"
-              />
-              <p className="text-[11px] text-primary mt-1">Portfolio dapat berupa link drive atau website portfolio anda.</p>
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium text-slate-700 mb-1.5">
-                Upload CV<span className="text-red-500 ml-0.5">*</span>
-              </label>
-              <div className="relative">
-                <input
-                  type="text"
-                  readOnly
-                  placeholder="Upload CV"
-                  value={cvFile ? cvFile.name : ""}
-                  className="w-full border border-gray-200 rounded-lg pl-4 pr-12 py-2.5 text-sm text-slate-700 placeholder-gray-300 bg-white cursor-pointer"
-                  onClick={() => document.getElementById("cv-upload")?.click()}
-                />
-                <button
-                  type="button"
-                  onClick={() => document.getElementById("cv-upload")?.click()}
-                  className="absolute right-0 top-0 h-full px-3 bg-navy text-white rounded-r-lg flex items-center justify-center hover:bg-navy/90 transition-colors"
-                >
-                  <Upload className="w-4 h-4" />
-                </button>
+              <div 
+                onClick={() => document.getElementById("cv-upload")?.click()}
+                className={clsx(
+                  "relative w-full border-2 border-dashed rounded-xl p-3 flex items-center justify-between cursor-pointer transition-all group",
+                  cvFile ? "border-navy/30 bg-navy/5" : "border-gray-200 hover:border-navy/20 bg-white"
+                )}
+              >
+                <div className="flex items-center gap-3 overflow-hidden">
+                  <div className={clsx(
+                    "w-10 h-10 rounded-lg flex items-center justify-center shrink-0",
+                    cvFile ? "bg-primary text-white" : "bg-gray-100 text-gray-400 group-hover:bg-navy/10 group-hover:text-navy"
+                  )}>
+                    {cvFile ? <FileText className="w-5 h-5" /> : <Upload className="w-5 h-5" />}
+                  </div>
+                  <div className="min-w-0">
+                    <p className={clsx(
+                      "text-xs font-bold truncate",
+                      cvFile ? "text-navy" : "text-gray-400"
+                    )}>
+                      {cvFile ? cvFile.name : "Pilih file CV"}
+                    </p>
+                    <p className="text-[10px] text-gray-400">PDF, DOC (Maks. 10MB)</p>
+                  </div>
+                </div>
                 <input
                   id="cv-upload"
                   type="file"
@@ -186,42 +182,42 @@ export default function ApplyPage({ params }: PageProps) {
                   onChange={handleFileChange}
                 />
               </div>
-              <p className="text-[11px] text-slate-400 mt-1">Upload logo dalam format PDF dengan max size 10MB.</p>
             </div>
           </div>
 
-          <div>
-            <label className="block text-sm font-medium text-slate-700 mb-3">
-              Pengalaman<span className="text-red-500 ml-0.5">*</span>
+          <div className="bg-gray-50/30 p-6 rounded-2xl border border-gray-100">
+            <label className="block text-sm font-bold text-slate-800 mb-4">
+              Total Pengalaman Kerja<span className="text-red-500 ml-0.5">*</span>
             </label>
-            <div className="flex flex-col gap-2">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
               {experienceOptions.map((opt) => (
-                <label key={opt} className="flex items-center gap-2.5 cursor-pointer group">
-                  <input
-                    type="radio"
-                    name="experience"
-                    value={opt}
-                    required
-                    checked={experience === opt}
-                    onChange={() => setExperience(opt)}
-                    className="w-4 h-4 accent-navy cursor-pointer"
-                  />
-                  <span className={clsx(
-                    "text-sm transition-colors",
-                    experience === opt ? "text-navy font-medium" : "text-slate-500 group-hover:text-slate-700"
-                  )}>{opt}</span>
-                </label>
+                <button
+                  key={opt}
+                  type="button"
+                  onClick={() => setExperience(opt)}
+                  className={clsx(
+                    "px-4 py-3 rounded-xl text-xs font-bold transition-all border text-center",
+                    experience === opt 
+                      ? "bg-primary text-white border-navy" 
+                      : "bg-white text-slate-500 border-gray-100 hover:border-navy/20"
+                  )}
+                >
+                  {opt}
+                </button>
               ))}
             </div>
           </div>
 
-          <div className="flex justify-end pt-4">
+          <div className="flex flex-col gap-4 pt-4">
             <button
               type="submit"
-              className="bg-navy text-white px-10 py-3 rounded-xl font-bold text-sm hover:shadow-lg hover:shadow-navy/20 transition-all active:scale-95"
+              className="w-full bg-primary text-white py-4 rounded-2xl font-bold text-base transition-all active:scale-[0.98]"
             >
-              Submit
+              Kirim Lamaran
             </button>
+            <p className="text-[10px] text-center text-slate-400 px-4">
+              Dengan menekan tombol di atas, Anda menyetujui syarat dan ketentuan yang berlaku di platform Edupath.
+            </p>
           </div>
         </form>
       </main>

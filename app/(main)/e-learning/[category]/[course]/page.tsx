@@ -19,7 +19,6 @@ export default function CourseDetailPage({ params }: PageProps) {
 
   const course = featuredCourses.find((c) => c.slug === courseSlug) || featuredCourses[0];
 
-  // Filter kursus terkait berdasarkan kategori yang sama
   const related = featuredCourses
     .filter((c) => c.id !== course.id && c.category === category)
     .slice(0, 4);
@@ -50,7 +49,6 @@ export default function CourseDetailPage({ params }: PageProps) {
   return (
     <div className="min-h-screen flex flex-col bg-gray-50">
       <main className="flex-1">
-        {/* HERO SECTION */}
         <div className="bg-primary text-white py-12 relative overflow-hidden">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div className="flex items-center gap-2 text-white/60 text-sm mb-6">
@@ -100,7 +98,6 @@ export default function CourseDetailPage({ params }: PageProps) {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <div className="grid lg:grid-cols-3 gap-12">
             <div className="lg:col-span-2 space-y-10">
-              {/* Apa yang dipelajari */}
               <div className="bg-white rounded-3xl p-8 border border-gray-100 shadow-sm">
                 <h2 className="text-xl font-bold text-navy mb-8">Apa yang akan kamu pelajari?</h2>
                 <div className="grid sm:grid-cols-2 gap-4">
@@ -113,7 +110,6 @@ export default function CourseDetailPage({ params }: PageProps) {
                 </div>
               </div>
 
-              {/* Kurikulum */}
               <div className="bg-white rounded-3xl p-8 border border-gray-100 shadow-sm">
                 <h2 className="text-xl font-bold text-navy mb-2">Kurikulum Kursus</h2>
                 <p className="text-sm text-gray-400 mb-8">{course.totalLessons} Pelajaran • {course.duration} Total Durasi</p>
@@ -135,7 +131,6 @@ export default function CourseDetailPage({ params }: PageProps) {
                 </div>
               </div>
 
-              {/* Course Reviews */}
               <div className="bg-white rounded-3xl p-8 border border-gray-100 shadow-sm">
                 <h2 className="text-xl font-bold text-navy mb-8">Ulasan Siswa</h2>
                 <div className="flex flex-col md:flex-row gap-8 mb-10 pb-8 border-b border-gray-50">
@@ -149,7 +144,6 @@ export default function CourseDetailPage({ params }: PageProps) {
                     <p className="text-sm text-gray-500 font-medium">Rating Kursus</p>
                   </div>
                   <div className="flex-1 space-y-3">
-                    {/* Progress bars dummy untuk statistik rating */}
                     {[5, 4, 3, 2, 1].map((star) => (
                       <div key={star} className="flex items-center gap-4 text-sm text-gray-500">
                         <span className="w-4">{star}</span>
@@ -185,7 +179,6 @@ export default function CourseDetailPage({ params }: PageProps) {
                 </div>
               </div>
 
-              {/* Related Courses */}
               <div className="space-y-6">
                 <div className="flex items-center justify-between">
                   <h2 className="text-xl font-bold text-navy">Kursus Terkait</h2>
@@ -201,7 +194,6 @@ export default function CourseDetailPage({ params }: PageProps) {
               </div>
             </div>
 
-            {/* SIDEBAR */}
             <div className="lg:col-span-1">
               <div className="bg-white rounded-[2.5rem] p-6 sticky top-28 border border-gray-100 shadow-xl shadow-navy/5">
                 <div className="relative rounded-3xl overflow-hidden mb-6 cursor-pointer group aspect-video">

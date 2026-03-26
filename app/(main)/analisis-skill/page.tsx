@@ -5,22 +5,17 @@ import Image from "next/image";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Analisis Skill",
-  description: "Analisis kemampuan dirimu untuk karir yang lebih baik.",
+    title: "Analisis Skill",
+    description: "Analisis kemampuan dirimu untuk karir yang lebih baik.",
 };
 
 export default function AnalisisSkillPage() {
     return (
-        <div className="min-h-screen flex flex-col">
-            <section className="w-full px-6 lg:px-8 py-10">
+        <div className="min-h-screen flex flex-col py-10">
+            <section className="w-full px-4 sm:px-6 lg:px-10 pt-6 md:pt-8">
                 <div className="max-w-7xl mx-auto">
-                    <div className="text-white relative rounded-2xl overflow-hidden px-10 py-16 bg-primary shadow-xl shadow-primary/10 h-max">
-                        <svg
-                            className="absolute right-0 top-0 h-full w-1/2 opacity-20 pointer-events-none"
-                            viewBox="0 0 400 300"
-                            preserveAspectRatio="xMaxYMid slice"
-                            xmlns="http://www.w3.org/2000/svg"
-                        >
+                    <div className="text-white relative w-full rounded-2xl overflow-hidden px-6 py-12 md:px-10 md:py-16 bg-primary">
+                        <svg className="absolute right-0 top-0 h-full w-full md:w-1/2 opacity-20 pointer-events-none" viewBox="0 0 400 300" preserveAspectRatio="xMaxYMid slice">
                             <circle cx="350" cy="0" r="180" fill="none" stroke="white" strokeWidth="30" />
                             <circle cx="200" cy="320" r="130" fill="none" stroke="white" strokeWidth="30" />
                         </svg>
@@ -38,7 +33,7 @@ export default function AnalisisSkillPage() {
                 </div>
             </section>
 
-            <main className="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <main className="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
                 <section className="mb-16">
                     <div className="grid md:grid-cols-2 gap-12 items-center">
                         <div>

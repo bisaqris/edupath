@@ -1,36 +1,17 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# EduPath: Platform Personalisasi Jalur Pembelajaran Berbasis Web
 
-## Getting Started
+## Institusi
+Telkom University Purwokerto
 
-First, run the development server:
+## Anggota Tim
+- Ketua: Abu Abdirrahman Humaid Al-Atsary
+- Anggota 1: Muhammad Rasyid Ridho
+- Anggota 2: Geusan Edurais Aria Daffa
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Deskripsi Karya
+EduPath adalah platform digital yang dirancang untuk mengatasi tantangan *cognitive overload* pada pelajar dengan menyediakan jalur pembelajaran (*learning path*) yang terpersonalisasi. Berdasarkan prinsip **User-Centered Design (UCD)**, website ini fokus pada pengalaman pengguna yang intuitif agar setiap individu dapat menavigasi kurikulum sesuai dengan kemampuan dan kecepatan belajar masing-masing.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Pemilihan subtema **Pendidikan Digital** melandasi pembuatan website ini guna menciptakan inklusivitas akses edukasi yang lebih modern, efisien, dan adaptif menggunakan teknologi *frontend* terkini seperti Next.js dan Tailwind CSS. Tujuan utamanya adalah memberikan struktur belajar yang jelas sehingga proses penyerapan ilmu menjadi lebih optimal dan terukur.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Link Website
+https://www.edupath-it.web.id/

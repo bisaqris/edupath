@@ -11,24 +11,36 @@ export default function LandingPage() {
 
   return (
     <div className="min-h-screen bg-white">
-      <div className="relative h-64 md:h-108 w-full my-8 max-w-7xl mx-auto">
-        <Image src={"/images/banner.png"} alt="Banner" className="w-full h-auto" fill />
+
+      {/* ── BANNER ── */}
+      <div className="relative w-full my-6 md:my-8 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Aspect ratio wrapper: taller on mobile, shorter on desktop */}
+        <div className="relative w-full aspect-[2/1] sm:aspect-[3/1] md:aspect-[16/5]">
+          <Image
+            src="/images/banner.png"
+            alt="Banner"
+            fill
+            className="object-cover rounded-xl"
+            priority
+          />
+        </div>
       </div>
 
-      <section className="w-full py-16 bg-white">
-        <div className="w-full max-w-7xl mx-auto px-6 lg:px-8">
-          <h2 className="text-center text-4xl font-display font-semibold mb-10">
+      {/* ── PROGRAM KAMI ── */}
+      <section className="w-full py-10 md:py-16 bg-white">
+        <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-center text-3xl md:text-4xl font-display font-semibold mb-8 md:mb-10">
             <span className="text-primary">Program </span>
             <span className="text-navy">Kami</span>
           </h2>
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
             {programs.map((p, i) => (
               <div
                 key={i}
-                className="rounded-2xl border-2 border-gray-100 bg-white px-8 pt-8 pb-10"
+                className="rounded-2xl border-2 border-gray-100 bg-white px-6 sm:px-8 pt-6 sm:pt-8 pb-8 sm:pb-10"
               >
-                <div className="flex items-center justify-center gap-2 mb-5">
-                  <div className="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center">
+                <div className="flex items-center justify-center gap-2 mb-4 md:mb-5">
+                  <div className="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center shrink-0">
                     {i === 0
                       ? <BookOpen className="w-6 h-6 text-primary" />
                       : <Target className="w-6 h-6 text-primary" />
@@ -45,17 +57,18 @@ export default function LandingPage() {
         </div>
       </section>
 
-      <section className="w-full py-16 bg-white">
-        <div className="w-full max-w-7xl mx-auto px-6 lg:px-8">
-
-          <h2 className="text-center text-4xl font-display font-semibold mb-10">
+      {/* ── KENAPA EDUPATH BERBEDA ── */}
+      <section className="w-full py-10 md:py-16 bg-white">
+        <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-center text-3xl md:text-4xl font-display font-semibold mb-8 md:mb-10">
             <span className="text-primary">Kenapa Edupath</span>
             <span className="text-navy"> Berbeda</span>
           </h2>
 
-          <div className="grid md:grid-cols-2 gap-12 items-start">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-start">
 
-            <div className="divide-y divide-gray-100">
+            {/* Accordion */}
+            <div className="divide-y divide-gray-100 order-2 md:order-1">
               {whyItems.map((item, i) => (
                 <div key={i} className="overflow-hidden">
                   <button
@@ -63,7 +76,7 @@ export default function LandingPage() {
                     className="w-full py-4 flex justify-between items-center text-left group"
                   >
                     <span className={clsx(
-                      "text-lg font-medium transition-colors duration-200",
+                      "text-base md:text-lg font-medium transition-colors duration-200 pr-4",
                       openIdx === i ? "text-primary" : "text-navy group-hover:text-primary"
                     )}>
                       {item.label}
@@ -75,7 +88,6 @@ export default function LandingPage() {
                         : "text-gray-400 group-hover:text-primary"
                     )} />
                   </button>
-
                   <div
                     className="transition-all duration-300 ease-in-out overflow-hidden"
                     style={{
@@ -83,7 +95,7 @@ export default function LandingPage() {
                       opacity: openIdx === i ? 1 : 0,
                     }}
                   >
-                    <p className="pb-4 text-base text-gray-500 leading-relaxed pr-6">
+                    <p className="pb-4 text-sm md:text-base text-gray-500 leading-relaxed pr-6">
                       {item.detail ?? "Kualitas terjamin dengan standar industri internasional."}
                     </p>
                   </div>
@@ -91,8 +103,9 @@ export default function LandingPage() {
               ))}
             </div>
 
-            <div className="grid grid-cols-2 gap-3">
-              <div className="relative h-40 w-full">
+            {/* Image grid */}
+            <div className="grid grid-cols-2 gap-3 order-1 md:order-2">
+              <div className="relative h-32 sm:h-40 w-full">
                 <Image
                   src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=400"
                   fill
@@ -100,7 +113,7 @@ export default function LandingPage() {
                   alt="Students"
                 />
               </div>
-              <div className="relative h-40 w-full">
+              <div className="relative h-32 sm:h-40 w-full">
                 <Image
                   src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=400"
                   fill
@@ -108,7 +121,7 @@ export default function LandingPage() {
                   alt="Learning"
                 />
               </div>
-              <div className="relative h-52 w-full col-span-2">
+              <div className="relative h-44 sm:h-52 w-full col-span-2">
                 <Image
                   src="https://images.unsplash.com/photo-1531482615713-2afd69097998?w=800"
                   fill
@@ -122,14 +135,15 @@ export default function LandingPage() {
         </div>
       </section>
 
-      <section className="w-full py-10 bg-white">
-        <div className="w-full max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+      {/* ── CATEGORIES GRID ── */}
+      <section className="w-full py-8 md:py-10 bg-white">
+        <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
             {categories.slice(0, 4).map((cat) => (
               <Link
                 key={cat.id}
                 href="/auth/login"
-                className="relative h-36 rounded-xl overflow-hidden group block"
+                className="relative h-28 sm:h-36 rounded-xl overflow-hidden group block"
               >
                 <Image
                   src={cat.image}
@@ -137,7 +151,7 @@ export default function LandingPage() {
                   fill
                   className="object-cover group-hover:scale-105 transition-transform duration-500"
                 />
-                <div className="absolute inset-0 bg-linear-to-t from-navy/85 via-navy/20 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-navy/85 via-navy/20 to-transparent" />
                 <span className="absolute bottom-3 left-0 right-0 text-center text-white text-xs font-semibold px-2">
                   {cat.name}
                 </span>
@@ -147,42 +161,33 @@ export default function LandingPage() {
         </div>
       </section>
 
-      <section className="w-full py-16 bg-white">
-        <div className="w-full max-w-7xl mx-auto px-6 lg:px-8">
-          <div
-            className="rounded-2xl px-10 pt-10 pb-6 relative bg-primary"
-          >
-            <div className="text-center mb-5">
-              <h2 className="text-white text-2xl font-display font-bold">Testimoni</h2>
+      {/* ── TESTIMONI ── */}
+      <section className="w-full py-10 md:py-16 bg-white">
+        <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="rounded-2xl px-6 sm:px-10 pt-8 sm:pt-10 pb-6 relative bg-primary overflow-hidden">
+
+            <div className="text-center mb-4 md:mb-5">
+              <h2 className="text-white text-xl md:text-2xl font-display font-bold">Testimoni</h2>
               <p className="text-blue-200 text-sm mt-1">Apa kata mereka tentang Edupath?</p>
             </div>
-            <hr className="border-white/20 mb-8" />
+            <hr className="border-white/20 mb-6 md:mb-8" />
 
-            <div className="absolute top-30 left-8 self-center">
+            {/* Opening quote — hidden on very small screens */}
+            <div className="absolute top-24 sm:top-28 left-4 sm:left-8 hidden sm:block">
               <span
-                className="block text-8xl leading-none font-bold"
+                className="block text-6xl sm:text-8xl leading-none font-bold"
                 style={{ color: "rgba(255,255,255,0.5)", letterSpacing: "-4px", fontFamily: "Georgia, serif" }}
               >
                 &#8220;
               </span>
             </div>
-            <div className="flex items-center justify-center gap-6 pb-6">
 
+            {/* Content: stack on mobile, side-by-side on md+ */}
+            <div className="flex flex-col md:flex-row items-center justify-center gap-6 pb-6">
 
-              <div className="flex-1 max-w-2xl">
-                <p className="text-white/90 text-sm leading-relaxed">
-                  Saya sangat terbantu dengan platform edukasi ini. Setelah menyelesaikan beberapa modul
-                  belajar, saya menggunakan fitur analisis skill-nya dan benar-benar kagum dengan hasilnya.
-                  Platform ini mampu mengidentifikasi kekuatan dan kelemahan saya secara detail, lalu
-                  merekomendasikan materi lanjutan yang sangat sesuai. Tidak hanya itu, saya juga bisa
-                  langsung melamar pekerjaan melalui sistem open recruitment yang tersedia. Rasanya seperti
-                  belajar dan membangun karir di satu tempat yang terintegrasi. Sangat relevan dan efisien
-                  untuk generasi sekarang!
-                </p>
-              </div>
-
-              <div className="shrink-0 flex flex-col items-center gap-2">
-                <div className="relative w-28 h-36 rounded-lg overflow-hidden">
+              {/* Photo — top on mobile */}
+              <div className="shrink-0 flex flex-col items-center gap-2 order-1 md:order-2">
+                <div className="relative w-20 h-28 sm:w-28 sm:h-36 rounded-lg overflow-hidden">
                   <Image
                     src="https://images.unsplash.com/photo-1552058544-f2b08422138a?w=200"
                     alt="Aliph HKM"
@@ -193,11 +198,25 @@ export default function LandingPage() {
                 <span className="text-white text-xs font-medium">Aliph HKM</span>
               </div>
 
+              {/* Quote text */}
+              <div className="flex-1 max-w-2xl order-2 md:order-1">
+                <p className="text-white/90 text-sm leading-relaxed text-center md:text-left">
+                  Saya sangat terbantu dengan platform edukasi ini. Setelah menyelesaikan beberapa modul
+                  belajar, saya menggunakan fitur analisis skill-nya dan benar-benar kagum dengan hasilnya.
+                  Platform ini mampu mengidentifikasi kekuatan dan kelemahan saya secara detail, lalu
+                  merekomendasikan materi lanjutan yang sangat sesuai. Tidak hanya itu, saya juga bisa
+                  langsung melamar pekerjaan melalui sistem open recruitment yang tersedia. Rasanya seperti
+                  belajar dan membangun karir di satu tempat yang terintegrasi. Sangat relevan dan efisien
+                  untuk generasi sekarang!
+                </p>
+              </div>
+
             </div>
 
-            <div className="absolute bottom-0 right-8">
+            {/* Closing quote */}
+            <div className="absolute bottom-0 right-4 sm:right-8">
               <span
-                className="block text-8xl leading-none font-bold"
+                className="block text-6xl sm:text-8xl leading-none font-bold"
                 style={{ color: "rgba(255,255,255,0.5)", letterSpacing: "-4px", fontFamily: "Georgia, serif" }}
               >
                 &#8221;
@@ -207,6 +226,7 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
+
     </div>
   );
 }

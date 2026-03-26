@@ -49,13 +49,11 @@ export default function JobDetailPage({ params }: PageProps) {
   }, [job]);
 
   return (
-    <div className="min-h-screen bg-white text-slate-700 font-sans">
-      <section className="w-full px-6 lg:px-10 pt-8">
-        <div
-          className="relative w-full rounded-2xl overflow-hidden px-10 py-14 bg-primary h-60"
-        >
+    <div className="min-h-screen bg-white text-slate-700 font-sans pb-10">
+      <section className="w-full px-4 sm:px-6 lg:px-10 pt-6 md:pt-8">
+        <div className="relative w-full rounded-2xl overflow-hidden px-6 py-10 md:px-10 md:py-14 bg-primary min-h-[180px] md:h-60 flex items-center">
           <svg
-            className="absolute right-0 top-0 h-full w-1/2 opacity-20 pointer-events-none"
+            className="absolute right-0 top-0 h-full w-full md:w-1/2 opacity-20 pointer-events-none"
             viewBox="0 0 400 300"
             preserveAspectRatio="xMaxYMid slice"
             xmlns="http://www.w3.org/2000/svg"
@@ -64,145 +62,157 @@ export default function JobDetailPage({ params }: PageProps) {
             <circle cx="200" cy="320" r="130" fill="none" stroke="white" strokeWidth="30" />
           </svg>
           <div className="relative z-10">
-            <p className="text-white/60 text-xs font-semibold mb-3 tracking-wide">Lowongan Pekerjaan</p>
-            <h1 className="text-white font-bold text-3xl md:text-4xl leading-snug">{job.title}</h1>
+            <p className="text-white/60 text-[10px] md:text-xs font-semibold mb-2 tracking-widest uppercase">Lowongan Pekerjaan</p>
+            <h1 className="text-white font-bold text-2xl md:text-4xl leading-tight md:leading-snug">{job.title}</h1>
           </div>
         </div>
       </section>
 
-      {/* ── MAIN ── */}
-      <main className="max-w-5xl mx-auto px-6 lg:px-10 py-10 space-y-6">
+      <main className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-10 py-6 md:py-10 space-y-6">
 
-        <Link href="/info-loker" className="inline-flex items-center gap-1.5 text-slate-400 hover:text-primary transition-colors text-sm font-medium">
+        <Link href="/info-loker" className="inline-flex items-center gap-1.5 text-slate-400 hover:text-primary transition-colors text-xs md:text-sm font-medium">
           <ChevronLeft className="w-4 h-4" /> Kembali ke Jelajah Karir
         </Link>
 
-        {/* ── INFO CARD ── */}
-        <div className="bg-white border border-gray-200 rounded-2xl p-6 flex flex-col sm:flex-row sm:items-center gap-6">
-          <div className="w-24 h-24 rounded-xl overflow-hidden bg-gray-100 shrink-0 flex items-center justify-center border border-gray-100">
-            {job.companyLogo ? (
-              // eslint-disable-next-line @next/next/no-img-element
-              <img src={job.companyLogo} alt={job.company} className="w-full h-full object-cover" />
-            ) : (
-              <Building2 className="w-10 h-10 text-gray-300" />
-            )}
-          </div>
+        <div className="bg-white border border-gray-100 rounded-2xl p-5 md:p-8 flex flex-col lg:flex-row lg:items-center gap-6 shadow-sm">
+          <div className="flex items-center gap-4 md:gap-6 flex-1">
+            <div className="w-16 h-16 md:w-24 md:h-24 rounded-2xl overflow-hidden bg-gray-50 shrink-0 flex items-center justify-center border border-gray-50">
+              {job.companyLogo ? (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img src={job.companyLogo} alt={job.company} className="w-full h-full object-cover" />
+              ) : (
+                <Building2 className="w-10 h-10 text-gray-200" />
+              )}
+            </div>
 
-          <div className="flex-1 min-w-0">
-            <h2 className="text-xl font-bold text-slate-900 mb-3">{job.title}</h2>
-            <div className="flex flex-col gap-1.5 text-sm text-slate-500">
-              <div className="flex items-center gap-2"><Building2 className="w-4 h-4 text-slate-400 shrink-0" /><span>{job.company}</span></div>
-              <div className="flex items-center gap-2"><MapPin className="w-4 h-4 text-slate-400 shrink-0" /><span>{job.location}</span></div>
-              <div className="flex items-center gap-2"><Users className="w-4 h-4 text-slate-400 shrink-0" /><span>51–100 Karyawan</span></div>
+            <div className="min-w-0">
+              <h2 className="text-lg md:text-2xl font-bold text-slate-900 mb-2 truncate">{job.title}</h2>
+              <div className="flex flex-col gap-1 text-xs md:text-sm text-slate-500">
+                <div className="flex items-center gap-2">
+                  <Building2 className="w-3.5 h-3.5 text-slate-400 shrink-0" />
+                  <span className="truncate font-medium">{job.company}</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <MapPin className="w-3.5 h-3.5 text-slate-400 shrink-0" />
+                  <span>{job.location}</span>
+                </div>
+                <div className="hidden md:flex items-center gap-2">
+                  <Users className="w-3.5 h-3.5 text-slate-400 shrink-0" />
+                  <span>51–100 Karyawan</span>
+                </div>
+              </div>
             </div>
           </div>
 
-          <div className="flex items-center gap-2 self-start sm:self-center">
-            {/* Share */}
-            <div className="relative">
+          <div className="flex items-center gap-3 pt-4 lg:pt-0 border-t lg:border-t-0 border-gray-50">
+            <div className="flex items-center gap-2">
+              <div className="relative">
+                <button
+                  onClick={handleShare}
+                  className={clsx(
+                    "p-3 rounded-xl transition-all border",
+                    shareState !== "idle" ? "text-green-600 bg-green-50 border-green-100" : "text-slate-400 border-gray-100 hover:bg-slate-50"
+                  )}
+                >
+                  {shareState === "copied" ? <Copy className="w-5 h-5" /> : shareState === "shared" ? <Check className="w-5 h-5" /> : <Share2 className="w-5 h-5" />}
+                </button>
+                {shareState !== "idle" && (
+                  <span className="absolute -top-10 left-1/2 -translate-x-1/2 whitespace-nowrap text-[10px] font-bold text-green-600 bg-green-50 border border-green-200 px-3 py-1.5 rounded-lg shadow-sm z-10">
+                    {shareState === "copied" ? "Link disalin!" : "Dibagikan!"}
+                  </span>
+                )}
+              </div>
+
               <button
-                onClick={handleShare}
-                title="Bagikan lowongan"
+                onClick={handleBookmark}
                 className={clsx(
-                  "p-2 rounded-lg transition-all",
-                  shareState !== "idle" ? "text-green-500 bg-green-50" : "text-slate-400 hover:text-slate-600 hover:bg-slate-50"
+                  "p-3 rounded-xl transition-all border",
+                  bookmarked ? "text-navy bg-primary/5 border-navy/10" : "text-slate-400 border-gray-100 hover:bg-slate-50"
                 )}
               >
-                {shareState === "copied" ? <Copy className="w-5 h-5" /> : shareState === "shared" ? <Check className="w-5 h-5" /> : <Share2 className="w-5 h-5" />}
+                <Bookmark className="w-5 h-5" fill={bookmarked ? "currentColor" : "none"} />
               </button>
-              {shareState !== "idle" && (
-                <span className="absolute -bottom-8 left-1/2 -translate-x-1/2 whitespace-nowrap text-[10px] font-bold text-green-600 bg-green-50 border border-green-200 px-2 py-1 rounded-lg shadow-sm z-10">
-                  {shareState === "copied" ? "Link disalin!" : "Dibagikan!"}
-                </span>
-              )}
             </div>
 
-            {/* Bookmark toggle */}
-            <button
-              onClick={handleBookmark}
-              title={bookmarked ? "Hapus simpanan" : "Simpan lowongan"}
-              className={clsx(
-                "p-2 rounded-lg transition-all",
-                bookmarked ? "text-navy bg-navy/5" : "text-slate-400 hover:text-slate-600 hover:bg-slate-50"
-              )}
-            >
-              <Bookmark className="w-5 h-5 transition-all duration-200" fill={bookmarked ? "currentColor" : "none"} />
-            </button>
-
-            <Link href={`/info-loker/${job.id}/apply`} className="bg-navy text-white px-8 py-3 rounded-xl font-bold text-sm hover:shadow-lg hover:shadow-navy/20 transition-all active:scale-95 ml-1">
-              Apply
+            <Link href={`/info-loker/${job.id}/apply`} className="flex-1 lg:flex-none text-center bg-primary text-white px-8 py-3.5 rounded-xl font-bold text-sm hover:shadow-lg hover:shadow-navy/20 transition-all active:scale-95">
+              Lamar Cepat
             </Link>
           </div>
         </div>
 
-        {/* ── STATS ROW ── */}
-        <div className="grid grid-cols-3 gap-0 border border-gray-200 rounded-2xl overflow-hidden bg-white">
-          <div className="px-8 py-6 border-r border-gray-200">
-            <p className="text-xs text-slate-500 mb-1">Pengalaman Bekerja</p>
-            <p className="text-sm font-semibold text-slate-800">0–1 Tahun</p>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-0 border border-gray-100 md:rounded-2xl overflow-hidden bg-white shadow-sm rounded-xl">
+          <div className="px-6 py-4 md:px-8 md:py-6 md:border-r border-gray-100">
+            <p className="text-[10px] md:text-xs text-slate-400 mb-1 uppercase tracking-wider font-semibold">Pengalaman</p>
+            <p className="text-sm md:text-base font-bold text-slate-800">0–1 Tahun</p>
           </div>
-          <div className="px-8 py-6 border-r border-gray-200">
-            <p className="text-xs text-slate-500 mb-1">Batas Akhir Pendaftaran</p>
-            <p className="text-sm font-semibold text-slate-800">{formatDate(job.deadline)}</p>
+          <div className="px-6 py-4 md:px-8 md:py-6 md:border-r border-gray-100 bg-gray-50/30 md:bg-transparent">
+            <p className="text-[10px] md:text-xs text-slate-400 mb-1 uppercase tracking-wider font-semibold">Deadline</p>
+            <p className="text-sm md:text-base font-bold text-slate-800">{formatDate(job.deadline)}</p>
           </div>
-          <div className="px-8 py-6">
-            <p className="text-xs text-slate-500 mb-2">Tipe Pekerjaan</p>
-            <span className="inline-block px-4 py-1 rounded-full border border-navy/30 text-navy text-xs font-semibold bg-navy/5">{job.type}</span>
-          </div>
-        </div>
-
-        {/* ── DESKRIPSI PEKERJAAN ── */}
-        <div className="bg-white border border-gray-200 rounded-2xl p-8 space-y-4">
-          <h3 className="text-base font-bold text-slate-900">Deskripsi Pekerjaan</h3>
-          <ul className="space-y-2">
-            {job.responsibilities.map((r, i) => (
-              <li key={i} className="flex items-start gap-2 text-sm text-slate-600 leading-relaxed">
-                <span className="mt-2 w-1 h-1 rounded-full bg-slate-400 shrink-0" />
-                <span>{r}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        {/* ── KUALIFIKASI ── */}
-        <div className="bg-white border border-gray-200 rounded-2xl p-8 space-y-4">
-          <h3 className="text-base font-bold text-slate-900">Kualifikasi</h3>
-          <ul className="space-y-2">
-            {job.requirements.map((req, i) => (
-              <li key={i} className="flex items-start gap-2 text-sm text-slate-600 leading-relaxed">
-                <span className="mt-2 w-1 h-1 rounded-full bg-slate-400 shrink-0" />
-                <span>{req}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        {/* ── SKILLS ── */}
-        <div className="bg-white border border-gray-200 rounded-2xl p-8 space-y-4">
-          <h3 className="text-base font-bold text-slate-900">Keahlian Utama</h3>
-          <div className="flex flex-wrap gap-2">
-            {job.skills.map((skill) => (
-              <span key={skill} className="px-4 py-1.5 rounded-lg bg-slate-50 text-slate-500 text-xs font-semibold border border-slate-100">{skill}</span>
-            ))}
+          <div className="px-6 py-4 md:px-8 md:py-6">
+            <p className="text-[10px] md:text-xs text-slate-400 mb-2 uppercase tracking-wider font-semibold">Tipe</p>
+            <span className="inline-block px-3 py-1 rounded-lg border border-navy/20 text-navy text-[11px] font-bold bg-primary/5">{job.type}</span>
           </div>
         </div>
 
-        {/* ── APPLY CTA ── */}
-        <div className="flex items-center justify-between pb-8 pt-2">
+        <div className="grid grid-cols-1 gap-6">
+          <div className="bg-white border border-gray-100 rounded-2xl p-6 md:p-8 space-y-5 shadow-sm">
+            <h3 className="text-base md:text-lg font-bold text-slate-900 flex items-center gap-2">
+              <span className="w-1.5 h-5 bg-navy rounded-full" />
+              Deskripsi Pekerjaan
+            </h3>
+            <ul className="space-y-3">
+              {job.responsibilities.map((r, i) => (
+                <li key={i} className="flex items-start gap-3 text-xs md:text-sm text-slate-600 leading-relaxed">
+                  <div className="mt-1.5 w-1.5 h-1.5 rounded-full bg-navy/30 shrink-0" />
+                  <span>{r}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="bg-white border border-gray-100 rounded-2xl p-6 md:p-8 space-y-5 shadow-sm">
+            <h3 className="text-base md:text-lg font-bold text-slate-900 flex items-center gap-2">
+              <span className="w-1.5 h-5 bg-navy rounded-full" />
+              Kualifikasi
+            </h3>
+            <ul className="space-y-3">
+              {job.requirements.map((req, i) => (
+                <li key={i} className="flex items-start gap-3 text-xs md:text-sm text-slate-600 leading-relaxed">
+                  <div className="mt-1.5 w-1.5 h-1.5 rounded-full bg-navy/30 shrink-0" />
+                  <span>{req}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="bg-white border border-gray-100 rounded-2xl p-6 md:p-8 space-y-5 shadow-sm">
+            <h3 className="text-base md:text-lg font-bold text-slate-900">Keahlian Utama</h3>
+            <div className="flex flex-wrap gap-2">
+              {job.skills.map((skill) => (
+                <span key={skill} className="px-3 py-1.5 rounded-xl bg-slate-50 text-slate-600 text-[11px] md:text-xs font-bold border border-slate-100 hover:border-navy/20 transition-colors">
+                  {skill}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pb-8 pt-4">
           <button
             onClick={handleBookmark}
             className={clsx(
-              "flex items-center gap-2 text-sm font-semibold transition-all px-4 py-2.5 rounded-xl border",
+              "w-full sm:w-auto flex items-center justify-center gap-2 text-sm font-bold transition-all px-6 py-3.5 rounded-xl border",
               bookmarked
-                ? "border-navy/20 text-navy bg-navy/5 hover:bg-red-50 hover:border-red-200 hover:text-red-500"
-                : "border-gray-200 text-slate-400 hover:text-navy hover:border-navy/20 hover:bg-navy/5"
+                ? "border-red-100 text-red-500 bg-red-50 hover:bg-red-100"
+                : "border-gray-100 text-slate-400 hover:text-navy hover:border-navy/20 hover:bg-primary/5"
             )}
           >
             <Bookmark className="w-4 h-4" fill={bookmarked ? "currentColor" : "none"} />
-            {bookmarked ? "Tersimpan" : "Simpan Lowongan"}
+            {bookmarked ? "Hapus Simpanan" : "Simpan Lowongan"}
           </button>
 
-          <Link href={`/info-loker/${job.id}/apply`} className="bg-navy text-white px-12 py-4 rounded-xl font-bold hover:shadow-xl hover:shadow-navy/20 transition-all active:scale-95">
+          <Link href={`/info-loker/${job.id}/apply`} className="w-full sm:w-auto text-center bg-primary text-white px-12 py-4 rounded-xl font-bold shadow-lg shadow-navy/10 hover:shadow-navy/20 transition-all active:scale-95">
             Lamar Sekarang
           </Link>
         </div>
